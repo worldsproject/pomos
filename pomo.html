@@ -2,32 +2,29 @@
 <head>
     <title>Pomos: Easy Timeboxing</title>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <link href='bootstrap.css' rel='stylesheet' media='screen'>
+    <link href='css/bootstrap.css' rel='stylesheet' media='screen'>
 </head>
 
 <body>
+<div class='container'>
 <div class='row'>
     <div class='span8'>
         <h2>Pomos: Easy Timeboxing</h2>
+        <br>
+        <img src='img/tomato.png' alt='Pomo Image'>
     </div>
 
     <div class='span4'>
-        <h3>You have completed</h3>
-        <p id='num-pomos'>0 Pomos</p>
+        <legend>Your Stats</legend>
+        <p id='num-pomos'>0 Pomos Completed</p>
         <br>
         <p id='pomo-level'>You are a <em>initite</em> pomoer.</p>
         <br>
         <p id='next-level'>You need 10 more pomos to attain the next level.</p>
-    </div>
-</div>
 
-<div class='row'>
-    <div class='span8'>
-        <img src='img/tomato.png' alt='Pomo Image'>
-    </div>
-    <div class='span4'>
         <form>
             <fieldset>
+                <legend>Pomo Setup</legend>
                 <label>Pomo Length</label>
                 <input type='text' id='pomo-length' value='25'>
                 <label>Rest Length</label>
@@ -38,17 +35,16 @@
 </div>
 
 <div class='row'>
-    <div class='span8'>
-        <button class='btn btn-large>Start Pomo</button>
+    <div class='span2 offset2'>
+        <button class='btn btn-large'>Start Pomo</button>
     </div>
 </div>
 
 <div class='row'>
-    <div class='span12'>
-        <div class='well'>
-            Produced by <a href='http://www.worldsproject.org'>WorldsProject LLC</a>
-        </div>
+    <div class='span12' align='center'>
+        Produced by <a href='http://www.worldsproject.org'>WorldsProject LLC</a>
     </div>
+</div>
 </div>
 </body>
 </html>
