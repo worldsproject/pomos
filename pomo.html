@@ -35,8 +35,11 @@
 </div>
 
 <div class='row'>
-    <div class='span2 offset2'>
-        <button class='btn btn-large'>Start Pomo</button>
+    <div class='span2 offset2' id='off-pomo'>
+        <button class='btn btn-large' id='start-button'>Start Pomo</button>
+    </div>
+    <div class='span6 offset1' style='display:none' id='on-pomo'>
+        <button class='btn btn-large btn-danger' id='quit-button'>Quit Pomo</button>
     </div>
 </div>
 
@@ -44,7 +47,11 @@
     <div class='span12' align='center'>
         Produced by <a href='http://www.worldsproject.org'>WorldsProject LLC</a>
     </div>
+    <audio id='ringing' src='sounds/alarm.ogg' preload='auto'>
+    <audio id='ticking' src='sounds/ticking.ogg' preload='auto'>
 </div>
 </div>
+<script src='js/jquery.1.9.1.min.js'>
+<script src='js/pomo.js'>
 </body>
 </html>
