@@ -2,21 +2,31 @@
 <head>
     <title>Pomos: Easy Timeboxing</title>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <link href='css/bootstrap.css' rel='stylesheet' media='screen'>
+    <link href='css/bootstrap.min.css' rel='stylesheet' media='screen'>
 </head>
 
 <body>
 <div class='container'>
 <div class='row'>
     <div class='span8'>
-        <h2>Pomos: Easy Timeboxing</h2>
+        <h1>Pomos: Easy Timeboxing</h1>
         <br>
-        <img src='img/tomato.png' alt='Pomo Image'>
+        <div class='image'>
+            <img src='img/tomato.png' alt='Pomo Image'>
+            <h2><span id='timer-text'>Ready</span></h2>
+        </div>
+        <button class='btn btn-large btn-success' id='start-button'>Start Pomo</button>
+        <button class='btn btn-large btn-danger' id='quit-button' style='display:none'>Quit Pomo</button>
+        <div id='pause-buttons' style='display:none'>
+            <button class='btn btn-small btn-info' id='rest-button'>Rest</button><br>
+            <button class='btn btn-small btn-warning' id='skip-button'>Skip Rest</button><br>
+            <button class='btn btn-small btn-danger' id='cancel-button'>Cancel Pomo</button>
+        </div>
     </div>
 
     <div class='span4'>
         <legend>Your Stats</legend>
-        <p id='num-pomos'>0 Pomos Completed</p>
+        <p id='num-pomos'>0 Pomos completed</p>
         <br>
         <p id='pomo-level'>You are a <em>initite</em> pomoer.</p>
         <br>
@@ -35,15 +45,6 @@
 </div>
 
 <div class='row'>
-    <div class='span2 offset2' id='off-pomo'>
-        <button class='btn btn-large' id='start-button'>Start Pomo</button>
-    </div>
-    <div class='span6 offset1' style='display:none' id='on-pomo'>
-        <button class='btn btn-large btn-danger' id='quit-button'>Quit Pomo</button>
-    </div>
-</div>
-
-<div class='row'>
     <div class='span12' align='center'>
         Produced by <a href='http://www.worldsproject.org'>WorldsProject LLC</a>
     </div>
@@ -51,7 +52,7 @@
     <audio id='ticking' src='sounds/ticking.ogg' preload='auto'>
 </div>
 </div>
-<script src='js/jquery.1.9.1.min.js'>
-<script src='js/pomo.js'>
+<script src='./js/jquery-1.9.1.min.js'></script>
+<script src='./js/pomo.js'></script>
 </body>
 </html>
