@@ -26,18 +26,18 @@ $('document').ready(function() {
         time = $('#rest-length').val() * 60;
         localStorage.setItem('numberOfPomos', Number(localStorage.getItem('numberOfPomos')) + 1);
         updateStats();
-        $('#pause-buttons').toggle();
+        pauseButtons();
     });
 
     $('#skip-button').click(function() {
         localStorage.setItem('numberOfPomos', Number(localStorage.getItem('numberOfPomos')) + 1);
         updateStats();
-        $('#pause-buttons').toggle();
+        pauseButtons();
         newPomo();
     });
 
     $('#cancel-button').click(function() {
-        $('#pause-buttons').toggle();
+        pauseButtons();
         newPomo();
     });
 
@@ -49,6 +49,13 @@ $('document').ready(function() {
     });
 });
 
+function pauseButtons() {
+    alert('Moo');
+    $('#rest-button').toggle();
+    $('#skip-button').toggle();
+    $('#cancel-button').toggle();
+}
+
 function pomoDown() {
     time = time - 1;
 
@@ -56,7 +63,7 @@ function pomoDown() {
         //Now we switch to rest time, or skip the rest.
         document.getElementById('ringing').play();
         $('#quit-button').toggle();
-        $('#pause-buttons').toggle();
+        pauseButtons();
         clearInterval(counter);
         return;
     }
