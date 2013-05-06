@@ -62,11 +62,39 @@ function newPomo() {
     $('#start-button').toggle();
 }
 
+function levels(number, level, aOrAn) {
+    var a = 'You need ';
+    var b = ' more Pomos to reach the next level.';
+    var num = localStorage.getItem('numberOfPomos');
+    $('#next-level').text(a + (number - num) + b);
+    $('#pomo-level').html('You are ' + aOrAn + ' <strong>' + level + '</strong> Pomoer.');
+}
+
 function updateStats() {
-    if(localStorage.getItem('numberOfPomos') == 1) {
+    var numPomos = localStorage.getItem('numberOfPomos');
+    if(numPomos == 1) {
         $('#num-pomos').text('1 Pomo completed.');
-    } else if(localStorage.getItem('numberOfPomos') > 1) {
+        $('#next-level').text('You need 9 more Pomos to reach the next level.');        
+    } else if(numPomos > 1) {
         $('#num-pomos').text(localStorage.getItem('numberOfPomos') + ' Pomos completed.');
+        if(numPomos > 10) {
+            levels(50, 'Novice', 'a');
+        } else if (numPomos > 50) {
+            levels(100, 'Adept', 'an');
+        } else if (numPomos > 100) {
+            levels(250, 'Scholar', 'a');
+        } else if (numPomos > 250) {
+            levels(500, 'Journeyman', 'a');
+        } else if (numPomos > 500) {
+            levels(1000, 'Guru', 'a');
+        } else if (numPomos > 1000) {
+            levels(2500, 'Expert', 'an');
+        } else if (numPomos > 2500) {
+            $('#next-level').text('There is nothing more for you to learn.');
+            $('#pomo-level').html('You are a master Pomoer.');
+        } else {
+            levels(10, 'Initiate', 'an');
+        }
     } else {
         localStorage.setItem('numberOfPomos', 0);
     }
