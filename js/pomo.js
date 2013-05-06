@@ -10,6 +10,7 @@ String.prototype.toMMSS = function () {
 }
 var time = 25*60;
 var counter;
+updateStats();
 
 $('document').ready(function() {
     $('#start-button').click(function() {
@@ -27,8 +28,25 @@ $('document').ready(function() {
         updateStats();
         $('#pause-buttons').toggle();
     });
-    
-    updateStats();
+
+    $('#skip-button').click(function() {
+        localStorage.setItem('numberOfPomos', Number(localStorage.getItem('numberOfPomos')) + 1);
+        updateStats();
+        $('#pause-buttons').toggle();
+        newPomo();
+    });
+
+    $('#cancel-button').click(function() {
+        $('#pause-buttons').toggle();
+        newPomo();
+    });
+
+    $('#quit-button').click(function() {
+        clearInterval(counter);
+        $('#quit-button').toggle();
+        $('#start-button').toggle();
+        $('#timer-text').text('Ready');
+    });
 });
 
 function pomoDown() {
