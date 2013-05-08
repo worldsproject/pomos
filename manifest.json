@@ -1,0 +1,14 @@
+{
+    "name":"Pomos",
+    "description":"A Pomodoro Timeboxing app for Chrome.",
+    "version":"1.0",
+
+    "app": {
+        "background": {
+            "scripts": ["js/bootstrap.min.js", "js/jquery-1.9.1.min.js", "js/pomo.js"]
+        }
+    },
+
+    "permissions": ["storage"],
+    "icons": {"16":"img/tomato16.png", "128":"img/tomato128.png"}
+}
