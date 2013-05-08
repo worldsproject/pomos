@@ -8,8 +8,17 @@ String.prototype.toMMSS = function () {
     var time    = minutes+':'+seconds;
     return time;
 }
+
+chrome.app.runtime.onLaunched.addListener(function() {
+    chrome.app.window.create('../pomo.html', {
+        'width': 1000,
+    'height': 600
+    });
+});
+
 var time = 25*60;
 var counter;
+var numPomos;
 updateStats();
 
 $('document').ready(function() {
@@ -20,20 +29,26 @@ $('document').ready(function() {
         $('#start-button').toggle();
         $('#quit-button').toggle();
     });
-  
+
     $('#rest-button').click(function() {
         counter = setInterval(pomoRest, 1000);
         time = $('#rest-length').val() * 60;
-        localStorage.setItem('numberOfPomos', Number(localStorage.getItem('numberOfPomos')) + 1);
-        updateStats();
-        pauseButtons();
+        numPomos = Number(numPomos) + 1;
+
+        chrome.storage.sync.set({'numberOfPomos':numPomos}, function(){
+            updateStats();
+            pauseButtons();
+        });
+
     });
 
     $('#skip-button').click(function() {
-        localStorage.setItem('numberOfPomos', Number(localStorage.getItem('numberOfPomos')) + 1);
-        updateStats();
-        pauseButtons();
-        newPomo();
+        numPomos = (Number(numPomos)+1);
+        chrome.storage.sync.set({'numberOfPomos':numPomos}, function(){
+            updateStats();
+            pauseButtons();
+            newPomo();
+        });
     });
 
     $('#cancel-button').click(function() {
@@ -50,7 +65,6 @@ $('document').ready(function() {
 });
 
 function pauseButtons() {
-    alert('Moo');
     $('#rest-button').toggle();
     $('#skip-button').toggle();
     $('#cancel-button').toggle();
@@ -76,10 +90,10 @@ function pomoRest() {
 
     if(time <= 0) {
         clearInterval(counter)
-        newPomo();
+            newPomo();
         return;
     }
-   
+
     $('#timer-text').text(time.toString().toMMSS());
 }
 
@@ -90,18 +104,21 @@ function newPomo() {
 function levels(number, level, aOrAn) {
     var a = 'You need ';
     var b = ' more Pomos to reach the next level.';
-    var num = localStorage.getItem('numberOfPomos');
-    $('#next-level').text(a + (number - num) + b);
+
+    $('#next-level').text(a + (number - numPomos) + b);
     $('#pomo-level').html('You are ' + aOrAn + ' <strong>' + level + '</strong> Pomoer.');
 }
 
 function updateStats() {
-    var numPomos = localStorage.getItem('numberOfPomos');
+    chrome.storage.sync.get('numberOfPomos', function(items){
+        numPomos = items['numberOfPomos'];
+        console.log('Number of Pomos: ' + numPomos);
+    });
     if(numPomos == 1) {
         $('#num-pomos').text('1 Pomo completed.');
         $('#next-level').text('You need 9 more Pomos to reach the next level.');        
     } else if(numPomos > 1) {
-        $('#num-pomos').text(localStorage.getItem('numberOfPomos') + ' Pomos completed.');
+        $('#num-pomos').text(numPomos + ' Pomos completed.');
         if(numPomos > 10) {
             levels(50, 'Novice', 'a');
         } else if (numPomos > 50) {
@@ -121,6 +138,6 @@ function updateStats() {
             levels(10, 'Initiate', 'an');
         }
     } else {
-        localStorage.setItem('numberOfPomos', 0);
+        chrome.storage.sync.set({'numberOfPomos':'0'}, function(){});
     }
 }
