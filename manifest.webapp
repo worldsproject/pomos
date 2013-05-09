@@ -1,0 +1,19 @@
+{
+    "version":"1.0",
+    "name":"Pomos",
+    "description":"A Pomodoro Timeboxing App",
+    "launch_path":"pomo.html",
+    "icons": {
+        "16":"/img/tomato16.png",
+        "48":"/img/tomato48.png",
+        "128":"/img/tomato128.png"
+    },
+
+    "developer": {
+        "name":"Tim Butram",
+        "url":"http://www.worldsproject.org"
+    },
+
+    "installs_allowed_from": ["*"]
+}
+        
