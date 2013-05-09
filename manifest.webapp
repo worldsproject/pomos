@@ -2,7 +2,7 @@
     "version":"1.0",
     "name":"Pomos",
     "description":"A Pomodoro Timeboxing App",
-    "launch_path":"pomo.html",
+    "launch_path":"/pomo.html",
     "icons": {
         "16":"/img/tomato16.png",
         "48":"/img/tomato48.png",
